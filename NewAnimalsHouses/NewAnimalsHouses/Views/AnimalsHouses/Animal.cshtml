@@ -1,0 +1,11 @@
+﻿@model NewAnimalsHouses.Models.GetAllAnimalsViewModel
+@{
+    ViewBag.Title = "Animal";
+}
+
+
+<h1>Animals</h1>
+@foreach (var animal in Model.AllAnimals)
+{
+<p>Name: @animal.Name Age: @animal.Age House: @animal.House.Name</p>  
+}
