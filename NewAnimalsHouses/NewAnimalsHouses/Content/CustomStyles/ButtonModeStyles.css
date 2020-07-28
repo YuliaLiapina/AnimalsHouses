@@ -1,0 +1,11 @@
+﻿.dark-mode, .light-mode {
+    margin-top: 10px;
+}
+
+.light-mode {
+    color: black;
+}
+
+.dark-mode:hover, .light-mode::after hover {
+        border-color: black;
+}

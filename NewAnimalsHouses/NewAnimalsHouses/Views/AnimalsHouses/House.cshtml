@@ -13,6 +13,23 @@
             <p>Animal name: @animal.Name Animal age: @animal.Age</p>
         }
     }*@
-    <h2>Houses</h2>
+@*@section styles{
+    <link href="@Url.Content("~/Content/CustomStyles/ButtonModeStyles.css")">
+}*@
 
-@{Html.RenderPartial("HousePartialView");}
+@section scripts{
+    <script src="@Url.Content("~/Scripts/CustomScripts/ModeButtonScript.js")"></script>
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Button {
+    <button class="dark-mode">Dark mode</button>
+}
+
+<h2>Houses</h2>
+
+
+@{Html.RenderPartial("ANimalPartialView");}

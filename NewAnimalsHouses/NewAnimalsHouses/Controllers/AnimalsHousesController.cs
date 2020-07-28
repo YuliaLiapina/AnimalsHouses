@@ -38,7 +38,7 @@ namespace NewAnimalsHouses.Controllers
 
             result.CommonViewModel = _mapper.Map<IList<AnimalHouseCommonViewModel>>(listAnimals);
 
-            return View(result);
+            return PartialView(result);
         }
 
         public ActionResult House()
@@ -49,7 +49,7 @@ namespace NewAnimalsHouses.Controllers
 
             result.CommonViewModel = _mapper.Map<IList<AnimalHouseCommonViewModel>>(listHouses);
 
-            return View(result);
+            return PartialView(result);
         }
 
         //public ActionResult Animal()

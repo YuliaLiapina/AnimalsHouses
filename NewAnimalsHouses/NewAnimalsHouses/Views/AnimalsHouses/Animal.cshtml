@@ -9,6 +9,26 @@
     {
     <p>Name: @animal.Name Age: @animal.Age House: @animal.House.Name</p>
     }*@
-    <h1>Animals</h1>
+
+@*@section styles{
+    <link href="@Url.Content("~/Content/CustomStyles/ButtonModeStyles.css")">
+}*@
+
+@section scripts{
+        <script src="@Url.Content("~/Scripts/CustomScripts/ModeButtonScript.js")"></script>
+    }
+
+@section Button{
+    <button class="dark-mode">Dark mode</button>
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h1>Animals</h1>
 
 @{Html.RenderPartial("AnimalPartialView");}
+
+

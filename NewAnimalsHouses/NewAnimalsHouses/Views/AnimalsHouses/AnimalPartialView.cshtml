@@ -6,7 +6,8 @@
 
 
 <h1>Animals partial view</h1>
-@foreach (var animal in Model.CommonViewModel)
+@foreach (var item in Model.CommonViewModel)
 {
-    <li>Name: @animal.Name </li>
+    <li>Id: @item.Id </li>
+    <li>Name: @item.Name </li>
 }
