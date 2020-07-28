@@ -1,15 +1,18 @@
-﻿@model NewAnimalsHouses.Models.GetAllHousesViewModel
-@{
-    ViewBag.Title = "House";
-}
-
-<h2>House</h2>
-
-@foreach (var house in Model.AllHouses)
-{
-    <p>House: @house.Name</p>
-    foreach (var animal in house.Animals)
-    {
-        <p>Animal name: @animal.Name Animal age: @animal.Age</p>
+﻿@*@model NewAnimalsHouses.Models.GetAllHousesViewModel
+    @{
+        ViewBag.Title = "House";
     }
-}
+
+    <h2>House</h2>
+
+    @foreach (var house in Model.AllHouses)
+    {
+        <p>House: @house.Name</p>
+        foreach (var animal in house.Animals)
+        {
+            <p>Animal name: @animal.Name Animal age: @animal.Age</p>
+        }
+    }*@
+    <h2>Houses</h2>
+
+@{Html.RenderPartial("HousePartialView");}

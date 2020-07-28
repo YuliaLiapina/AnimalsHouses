@@ -23,17 +23,20 @@ namespace NewAnimalsHouses.Controllers
             {
                 cfg.CreateMap<AnimalModel, AnimalViewModel>().ReverseMap();
                 cfg.CreateMap<HouseModel, HouseViewModel>().ReverseMap();
+                cfg.CreateMap<HouseModel, AnimalHouseCommonViewModel>().ReverseMap();
+                cfg.CreateMap<AnimalModel, AnimalHouseCommonViewModel>().ReverseMap();
             });
             _mapper = new Mapper(conf);
         }
         // GET: Animal
+
         public ActionResult Animal()
         {
             var listAnimals = _animalManager.GetAll();
 
-            var result = new GetAllAnimalsViewModel();
+            var result = new AnimalHouseCollectionViewModel();
 
-            result.AllAnimals = _mapper.Map<IList<AnimalViewModel>>(listAnimals);
+            result.CommonViewModel = _mapper.Map<IList<AnimalHouseCommonViewModel>>(listAnimals);
 
             return View(result);
         }
@@ -42,11 +45,33 @@ namespace NewAnimalsHouses.Controllers
         {
             var listHouses = _houseManager.GetAll();
 
-            var result = new GetAllHousesViewModel();
+            var result = new AnimalHouseCollectionViewModel();
 
-            result.AllHouses = _mapper.Map<IList<HouseViewModel>>(listHouses);
+            result.CommonViewModel = _mapper.Map<IList<AnimalHouseCommonViewModel>>(listHouses);
 
             return View(result);
         }
+
+        //public ActionResult Animal()
+        //{
+        //    var listAnimals = _animalManager.GetAll();
+
+        //    var result = new GetAllAnimalsViewModel();
+
+        //    result.AllAnimals = _mapper.Map<IList<AnimalViewModel>>(listAnimals);
+
+        //    return View(result);
+        //}
+
+        //public ActionResult House()
+        //{
+        //    var listHouses = _houseManager.GetAll();
+
+        //    var result = new GetAllHousesViewModel();
+
+        //    result.AllHouses = _mapper.Map<IList<HouseViewModel>>(listHouses);
+
+        //    return View(result);
+        //}
     }
 }

@@ -135,6 +135,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnimalHouseCollectionViewModel.cs" />
+    <Compile Include="Models\AnimalHouseCommonViewModel.cs" />
     <Compile Include="Models\AnimalViewModel.cs" />
     <Compile Include="Models\GetAllAnimalsViewModel.cs" />
     <Compile Include="Models\GetAllHousesViewModel.cs" />
@@ -179,6 +181,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AnimalsHouses\Animal.cshtml" />
     <Content Include="Views\AnimalsHouses\House.cshtml" />
+    <Content Include="Views\AnimalsHouses\AnimalPartialView.cshtml" />
+    <Content Include="Views\AnimalsHouses\HousePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

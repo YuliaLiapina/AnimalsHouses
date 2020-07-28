@@ -1,0 +1,12 @@
+﻿@model NewAnimalsHouses.Models.AnimalHouseCollectionViewModel
+
+@{
+    ViewBag.Title = "Houses";
+}
+
+
+<h1>Houses partial view</h1>
+@foreach (var house in Model.CommonViewModel)
+{
+    <li>Name: @house.Name </li>
+}

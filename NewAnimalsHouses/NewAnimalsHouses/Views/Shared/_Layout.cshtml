@@ -1,4 +1,17 @@
 ﻿<!DOCTYPE html>
+<style>
+    .dark-mode, .light-mode {
+        margin-top: 10px;
+    }
+
+    .light-mode {
+        color: black;
+    }
+
+    .dark-mode:hover, .light-mode::after hover {
+            border-color: black;
+    }
+</style>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,7 +20,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="Body">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,6 +36,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="/AnimalsHouses/Animal">Animals</a></li>
+                    <li><a href="/AnimalsHouses/House">Houses</a></li>
+                    <li><button class="dark-mode">Dark mode</button></li>
                 </ul>
             </div>
         </div>
@@ -38,5 +54,36 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        let buttonDarkMode = document.querySelector('.dark-mode');
+        let buttonLightMode = document.createElement('button');
+
+        function DarkMode() {
+            let elementBox = document.querySelector('.jumbotron');
+            elementBox.style.backgroundColor = 'black';
+
+            let bodyElement = document.querySelector('.Body');
+            bodyElement.style.backgroundColor = 'black';
+
+            let textElement = document.querySelector('.Body');
+            textElement.style.color = 'white';
+
+            buttonLightMode.className = 'light-mode';
+            buttonLightMode.innerHTML = 'Light mode';
+
+            buttonDarkMode.replaceWith(buttonLightMode);
+
+            function LightMode() {
+                bodyElement.style.backgroundColor = 'white';
+                textElement.style.color = 'black';
+                elementBox.style.backgroundColor = '#eeeeee';
+                buttonLightMode.replaceWith(buttonDarkMode);
+
+            }
+            buttonLightMode.addEventListener('click', LightMode);
+        };
+
+        buttonDarkMode.addEventListener('click', DarkMode);
+    </script>
 </body>
 </html>
