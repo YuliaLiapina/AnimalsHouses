@@ -183,7 +183,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AnimalsHouses\Animal.cshtml" />
     <Content Include="Views\AnimalsHouses\House.cshtml" />
-    <Content Include="Views\AnimalsHouses\AnimalPartialView.cshtml" />
+    <Content Include="Views\Shared\AnimalPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
