@@ -10,7 +10,7 @@ namespace DAL
         {
             using (var context = new AnimalsHousesContext())
             {
-                var listHouses = context.Houses.Include(house => house.Animals).ToList();
+                var listHouses = context.Houses./*Include(house => house.Animals).*/ToList();
 
                 return listHouses;
             }

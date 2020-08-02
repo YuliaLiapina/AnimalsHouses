@@ -2,7 +2,7 @@
 using System.Data.Entity;
 namespace DAL
 {
-   public class AnimalsHousesInicializer: DropCreateDatabaseAlways<AnimalsHousesContext>
+   public class AnimalsHousesInicializer: CreateDatabaseIfNotExists<AnimalsHousesContext>
     {
         protected override void Seed(AnimalsHousesContext context)
         {

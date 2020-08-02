@@ -1,9 +1,10 @@
 ﻿using DAL.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace DAL
 {
-   public class AnimalsHousesContext: DbContext
+   public class AnimalsHousesContext: IdentityDbContext<Employee>
     {
         public AnimalsHousesContext() : base("DefaultConnection")
         {

@@ -6,10 +6,10 @@ namespace NewAnimalsHouses.Models
     {
         public HouseViewModel()
         {
-            Animals = new List<AnimalViewModel>();
+            //Animals = new List<AnimalViewModel>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<AnimalViewModel> Animals { get; set; }
+        //public List<AnimalViewModel> Animals { get; set; }
     }
 }

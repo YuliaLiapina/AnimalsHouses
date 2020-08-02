@@ -1,8 +1,14 @@
 ﻿using AutoMapper;
 using BusinessLayer;
+using BusinessLayer.Managers;
 using BusinessLayer.Models;
+using DAL.Models;
+using Microsoft.AspNet.Identity.Owin;
 using NewAnimalsHouses.Models;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace NewAnimalsHouses.Controllers
@@ -29,15 +35,25 @@ namespace NewAnimalsHouses.Controllers
             _mapper = new Mapper(conf);
         }
         // GET: Animal
-
-        public ActionResult Animal()
+                 
+        public async Task<ActionResult> Animal()
         {
+            var userManager = HttpContext.GetOwinContext().GetUserManager<EmployeeManager>();
+
             var listAnimals = _animalManager.GetAll();
 
             var result = new AnimalHouseCollectionViewModel();
 
             result.CommonViewModel = _mapper.Map<IList<AnimalHouseCommonViewModel>>(listAnimals);
 
+            var createUser = await userManager.CreateAsync(new Employee
+            {
+                LastName = "Julia",
+                Email = "Julia@gmail.com",
+                UserName = "Juli",
+                BirthDate = new DateTime(2020,07,30)
+            }, "123456789"); ;
+            
             return View(result);
         }
 

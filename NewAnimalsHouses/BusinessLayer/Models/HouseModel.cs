@@ -6,10 +6,10 @@ namespace BusinessLayer.Models
     {
         public HouseModel()
         {
-            Animals = new List<AnimalModel>();
+            //Animals = new List<AnimalModel>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public IList<AnimalModel> Animals { get; set; }
+        //public IList<AnimalModel> Animals { get; set; }
     }
 }
