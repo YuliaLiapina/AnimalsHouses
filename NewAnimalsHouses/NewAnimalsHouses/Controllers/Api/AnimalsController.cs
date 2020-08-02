@@ -2,20 +2,16 @@
 using BusinessLayer;
 using BusinessLayer.Models;
 using NewAnimalsHouses.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace NewAnimalsHouses.Controllers.Api
 {
     public class AnimalsController : ApiController
     {
-        public readonly AnimalManager _animalManager;
+        private readonly AnimalManager _animalManager;
 
-        public readonly JSonConvertor _jsonConvertor;
+        private readonly JSonConvertor _jsonConvertor;
 
         private Mapper _mapper;
         public AnimalsController()
@@ -39,7 +35,6 @@ namespace NewAnimalsHouses.Controllers.Api
             var animalsViewModel = _mapper.Map<IList<AnimalViewModel>>(animals);
 
             var json = _jsonConvertor.Convert(animalsViewModel);
-
 
             return json;
         }

@@ -2,6 +2,7 @@
 using BusinessLayer.Interfaces;
 using System;
 using System.Collections;
+using System.Text;
 
 namespace BusinessLayer
 {
@@ -9,7 +10,8 @@ namespace BusinessLayer
     {
         public string Convert(object model)
         {
-            string result = "[";
+            StringBuilder result = new StringBuilder("[ ");
+
             IEnumerable enumerable = (model as IEnumerable);
 
             if (enumerable != null)
@@ -17,23 +19,34 @@ namespace BusinessLayer
                 foreach (var item in enumerable)
                 {
                     Type type = item.GetType();
-                    var properties = type.GetProperties(); 
-                    
-                    foreach(var property in properties)
+                    var properties = type.GetProperties();
+
+                    foreach (var property in properties)
                     {
-                        if(!property.IsDefined(typeof(MyIgnoreAttribute), false))
+                        if (!property.IsDefined(typeof(MyIgnoreAttribute), false))
                         {
-                            result += "{";
-                            result += $"\"{property.Name}\": ";
-                            result += $"\"{property.GetValue(item)}\"";
-                            result += "},";
+                            result.Append($"{{\"{property.Name}\": \"{property.GetValue(item)}\"}},");
                         }
                     }
                 }
             }
-            result += " ]";
-            
-            return result;
+
+            else
+            {
+                Type modelType = model.GetType();
+                var properties = modelType.GetProperties();
+
+                foreach (var property in properties)
+                {
+                    if (!property.IsDefined(typeof(MyIgnoreAttribute), false))
+                    {
+                        result.Append($"{{\"{property.Name}\": \"{property.GetValue(model)}\"}},");
+                    }
+                }
+            }
+            result.Append(" ]");
+
+            return result.ToString();
         }
     }
 }
