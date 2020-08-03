@@ -10,43 +10,48 @@ namespace BusinessLayer
     {
         public string Convert(object model)
         {
-            StringBuilder result = new StringBuilder("[ ");
+            StringBuilder result = new StringBuilder();
+            string temp;
 
-            IEnumerable enumerable = (model as IEnumerable);
+            IEnumerable enumerable = model as IEnumerable;
 
             if (enumerable != null)
             {
+                result.Append("[");
                 foreach (var item in enumerable)
                 {
-                    Type type = item.GetType();
-                    var properties = type.GetProperties();
-
-                    foreach (var property in properties)
-                    {
-                        if (!property.IsDefined(typeof(MyIgnoreAttribute), false))
-                        {
-                            result.Append($"{{\"{property.Name}\": \"{property.GetValue(item)}\"}},");
-                        }
-                    }
+                    temp = ConvertProperties(item);
+                    result.Append(temp);
                 }
+                result.Append("]");
             }
 
             else
             {
-                Type modelType = model.GetType();
-                var properties = modelType.GetProperties();
+                temp = ConvertProperties(model);
+                result.Append(temp);
+            }
 
-                foreach (var property in properties)
+            return result.ToString();
+        }
+        public static string ConvertProperties(object model)
+        {
+            Type modelType = model.GetType();
+            var properties = modelType.GetProperties();
+            StringBuilder result = new StringBuilder("{");
+
+            foreach (var property in properties)
+            {
+                if (!property.IsDefined(typeof(MyIgnoreAttribute), false))
                 {
-                    if (!property.IsDefined(typeof(MyIgnoreAttribute), false))
-                    {
-                        result.Append($"{{\"{property.Name}\": \"{property.GetValue(model)}\"}},");
-                    }
+                    result.Append($"\"{property.Name}\": \"{property.GetValue(model)}\",");
                 }
             }
-            result.Append(" ]");
+            result.Append("}");
 
             return result.ToString();
         }
     }
 }
+
+

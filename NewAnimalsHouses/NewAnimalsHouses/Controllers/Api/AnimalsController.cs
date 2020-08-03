@@ -33,7 +33,7 @@ namespace NewAnimalsHouses.Controllers.Api
         {
             var animals = _animalManager.GetAll();
             var animalsViewModel = _mapper.Map<IList<AnimalViewModel>>(animals);
-
+                        
             var json = _jsonConvertor.Convert(animalsViewModel);
 
             return json;
