@@ -1,10 +1,11 @@
-﻿using DAL.Models;
+﻿using DAL.InterfacesDAL;
+using DAL.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 namespace DAL
 {
-    public class HouseRepository
+    public class HouseRepository:IHouseRepository
     {
         public IList<House> GetAll()
         {
@@ -13,6 +14,16 @@ namespace DAL
                 var listHouses = context.Houses./*Include(house => house.Animals).*/ToList();
 
                 return listHouses;
+            }
+        }
+
+        public House CreateHouse(House house)
+        {
+            using(var context = new AnimalsHousesContext())
+            {
+                context.Houses.Add(house);
+                context.SaveChanges();
+                return house;
             }
         }
     }

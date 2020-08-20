@@ -78,12 +78,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimalManager.cs" />
+    <Compile Include="Managers\AnimalManager.cs" />
     <Compile Include="Attributes\MyIgnoreAttribute.cs" />
-    <Compile Include="HouseManager.cs" />
+    <Compile Include="Managers\EmployeeManager.cs" />
+    <Compile Include="Managers\HouseManager.cs" />
+    <Compile Include="Interfaces\IAnimalManager.cs" />
+    <Compile Include="Interfaces\IHouseManager.cs" />
     <Compile Include="Interfaces\IJsonConvertor.cs" />
     <Compile Include="JSonConvertor.cs" />
-    <Compile Include="Managers\EmployeeManager.cs" />
     <Compile Include="Models\AnimalModel.cs" />
     <Compile Include="Models\HouseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

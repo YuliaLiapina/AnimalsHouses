@@ -1,11 +1,11 @@
-﻿using DAL.Models;
+﻿using DAL.Interfaces;
+using DAL.Models;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace DAL
 {
-    public class AnimalRepository
+    public class AnimalRepository:IAnimalRepository
     {
         public IList<Animal> GetAll()
         {

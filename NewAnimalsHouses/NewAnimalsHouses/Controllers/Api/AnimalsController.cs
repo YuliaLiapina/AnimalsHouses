@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLayer;
+using BusinessLayer.Interfaces;
+using BusinessLayer.InterfacesBL;
 using BusinessLayer.Models;
 using NewAnimalsHouses.Models;
 using System.Collections.Generic;
@@ -9,23 +11,15 @@ namespace NewAnimalsHouses.Controllers.Api
 {
     public class AnimalsController : ApiController
     {
-        private readonly AnimalManager _animalManager;
+        private readonly IAnimalManager _animalManager;
+        private readonly IMapper _mapper;
+        private readonly IJsonConvertor _jsonConvertor;
 
-        private readonly JSonConvertor _jsonConvertor;
-
-        private Mapper _mapper;
-        public AnimalsController()
+        public AnimalsController(IAnimalManager animalManager, IMapper mapper, IJsonConvertor jsonConvertor)
         {
-            _animalManager = new AnimalManager();
-            _jsonConvertor = new JSonConvertor();
-
-            var conf = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<AnimalModel, AnimalViewModel>().ReverseMap();
-                cfg.CreateMap<HouseModel, HouseViewModel>().ReverseMap();
-            });
-            _mapper = new Mapper(conf);
-
+            _animalManager = animalManager;
+            _mapper = mapper;
+            _jsonConvertor = jsonConvertor;
         }
         // GET: api/Animals
 

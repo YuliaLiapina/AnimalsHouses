@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLayer;
+using BusinessLayer.InterfacesBL;
 using BusinessLayer.Models;
 using NewAnimalsHouses.Models;
 using System;
@@ -13,27 +14,14 @@ namespace NewAnimalsHouses.Controllers.Api
 {
     public class TestController : ApiController
     {
-        public AnimalManager _animalManager;
-
-        public HouseManager _houseManager;
-
-        public JSonConvertor _jsonConvertor;
-
-        private Mapper _mapper;
-        public TestController()
+        private readonly IAnimalManager _animalManager;
+        private readonly JSonConvertor _jsonConvertor;
+        private readonly IMapper _mapper;
+        public TestController(IAnimalManager animalManager, IHouseManager houseManager, IMapper mapper)
         {
-            _animalManager = new AnimalManager();
-            _houseManager = new HouseManager();
+            _animalManager = animalManager;
             _jsonConvertor = new JSonConvertor();
-
-            var conf = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<AnimalModel, AnimalViewModel>().ReverseMap();
-                cfg.CreateMap<HouseModel, HouseViewModel>().ReverseMap();
-                cfg.CreateMap<HouseModel, AnimalHouseCommonViewModel>().ReverseMap();
-                cfg.CreateMap<AnimalModel, AnimalHouseCommonViewModel>().ReverseMap();
-            });
-            _mapper = new Mapper(conf);
+            _mapper = mapper;
         }
         // GET: api/Test
 

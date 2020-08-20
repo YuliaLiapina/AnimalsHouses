@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Employee";
+}
+@section styles{
+        <link href="@Url.Content("~/CustomStyles/RegistrationStyles.css")">
+    }
+<h2>
+    Register now
+</h2>
+<h3>Please fill out this form to create an account</h3>
+<div>
+    <form method="post">
+        <p><label for="email">Email</label></p>
+        <p><input type="email" placeholder="Enter Email" name="Email" required /></p>
+        <p><label for="password">Password</label></p>
+        <p><input type="password" placeholder="Enter password" name="Password" required /></p>
+        <p><label for="psw-repeat">Repeat Password</label></p>
+        <p><input type="password" placeholder="Repeat Password" name="Password" required /></p>
+        <p><label for="lastName">Last Name</label></p>
+        <p><input type="text" placeholder="Last Name" name="LastName" required /></p>
+        <p><label for="language">Language</label></p>
+        <p><input type="text" placeholder="Language" name="Language" required /></p>
+        <button type="submit" value="EmployeeRegistration">Register</button>
+        </form>
+</div>

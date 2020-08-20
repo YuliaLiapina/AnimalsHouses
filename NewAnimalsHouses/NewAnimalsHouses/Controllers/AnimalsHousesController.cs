@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using BusinessLayer;
+using BusinessLayer.InterfacesBL;
 using BusinessLayer.Managers;
-using BusinessLayer.Models;
 using DAL.Models;
 using Microsoft.AspNet.Identity.Owin;
 using NewAnimalsHouses.Models;
@@ -15,24 +14,28 @@ namespace NewAnimalsHouses.Controllers
 {
     public class AnimalsHousesController : Controller
     {
-        public AnimalManager _animalManager;
+        private readonly IAnimalManager _animalManager;
+        private readonly IHouseManager _houseManager;
+        private readonly IMapper _mapper;
 
-        public HouseManager _houseManager;
-
-        private Mapper _mapper;
-        public AnimalsHousesController()
+        //public AnimalManager _animalManager;
+        //public HouseManager _houseManager;
+        //private readonly Mapper _mapper;
+        public AnimalsHousesController(IAnimalManager animalManager, IHouseManager houseManager, IMapper mapper)
         {
-            _animalManager = new AnimalManager();
-            _houseManager = new HouseManager();
-
-            var conf = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<AnimalModel, AnimalViewModel>().ReverseMap();
-                cfg.CreateMap<HouseModel, HouseViewModel>().ReverseMap();
-                cfg.CreateMap<HouseModel, AnimalHouseCommonViewModel>().ReverseMap();
-                cfg.CreateMap<AnimalModel, AnimalHouseCommonViewModel>().ReverseMap();
-            });
-            _mapper = new Mapper(conf);
+            _animalManager = animalManager;
+            _houseManager = houseManager;
+            _mapper = mapper;
+            //_animalManager = new AnimalManager();
+            //_houseManager = new HouseManager();
+            //var conf = new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<AnimalModel, AnimalViewModel>().ReverseMap();
+            //    cfg.CreateMap<HouseModel, HouseViewModel>().ReverseMap();
+            //    cfg.CreateMap<HouseModel, AnimalHouseCommonViewModel>().ReverseMap();
+            //    cfg.CreateMap<AnimalModel, AnimalHouseCommonViewModel>().ReverseMap();
+            //});
+            //_mapper = new Mapper(conf);
         }
         // GET: Animal
                  
@@ -52,8 +55,9 @@ namespace NewAnimalsHouses.Controllers
                 Email = "Julia@gmail.com",
                 UserName = "Juli",
                 BirthDate = new DateTime(2020,07,30)
-            }, "123456789"); ;
-            
+            }, "123456789");
+
+
             return View(result);
         }
 
@@ -64,9 +68,11 @@ namespace NewAnimalsHouses.Controllers
             var result = new AnimalHouseCollectionViewModel();
 
             result.CommonViewModel = _mapper.Map<IList<AnimalHouseCommonViewModel>>(listHouses);
-
+            
             return View(result);
         }
+
+        
 
         //public ActionResult Animal()
         //{

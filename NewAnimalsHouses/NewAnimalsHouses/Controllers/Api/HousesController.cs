@@ -1,34 +1,23 @@
 ﻿using AutoMapper;
 using BusinessLayer;
-using BusinessLayer.Models;
+using BusinessLayer.Interfaces;
+using BusinessLayer.InterfacesBL;
 using NewAnimalsHouses.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace NewAnimalsHouses.Controllers.Api
 {
     public class HousesController : ApiController
     {
-        private readonly HouseManager _houseManager;
-
-        private readonly JSonConvertor _jsonConvertor;
-
-        private Mapper _mapper;
-        public HousesController()
+        private readonly IHouseManager _houseManager;
+        private readonly IJsonConvertor _jsonConvertor;
+        private readonly IMapper _mapper;
+        public HousesController(IHouseManager houseManager, IMapper mapper, IJsonConvertor jsonConvertor)
         {
-            _houseManager = new HouseManager();
-            _jsonConvertor = new JSonConvertor();
-
-            var conf = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<AnimalModel, AnimalViewModel>().ReverseMap();
-                cfg.CreateMap<HouseModel, HouseViewModel>().ReverseMap();
-            });
-            _mapper = new Mapper(conf);
+            _houseManager = houseManager;
+            _mapper = mapper;
+            _jsonConvertor = jsonConvertor;
         }
         // GET: api/Houses
         public string Get()

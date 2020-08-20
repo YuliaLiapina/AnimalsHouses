@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{6001906D-8F62-4A32-A75A-B07D22174279}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewAnimalsHouses.Tests", "NewAnimalsHouses.Tests\NewAnimalsHouses.Tests.csproj", "{9B7D6C67-0121-460A-8216-AD855AD4B1FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6001906D-8F62-4A32-A75A-B07D22174279}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6001906D-8F62-4A32-A75A-B07D22174279}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6001906D-8F62-4A32-A75A-B07D22174279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B7D6C67-0121-460A-8216-AD855AD4B1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B7D6C67-0121-460A-8216-AD855AD4B1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B7D6C67-0121-460A-8216-AD855AD4B1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B7D6C67-0121-460A-8216-AD855AD4B1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

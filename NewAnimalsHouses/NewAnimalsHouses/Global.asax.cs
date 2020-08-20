@@ -2,11 +2,8 @@
 using DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.Cookies;
+using NewAnimalsHouses.Autofac;
 using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -23,6 +20,7 @@ namespace NewAnimalsHouses
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutofacConfig.ConfigureContainer();
         }
     }
 

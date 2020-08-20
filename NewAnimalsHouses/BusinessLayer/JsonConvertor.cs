@@ -11,7 +11,6 @@ namespace BusinessLayer
         public string Convert(object model)
         {
             StringBuilder result = new StringBuilder();
-            string temp;
 
             IEnumerable enumerable = model as IEnumerable;
 
@@ -20,36 +19,33 @@ namespace BusinessLayer
                 result.Append("[");
                 foreach (var item in enumerable)
                 {
-                    temp = ConvertProperties(item);
-                    result.Append(temp);
+                   ConvertProperties(item, result);
                 }
+                result.Remove(result.Length - 1, 1);
                 result.Append("]");
             }
 
             else
             {
-                temp = ConvertProperties(model);
-                result.Append(temp);
+                ConvertProperties(model, result);
+                result.Remove(result.Length - 1, 1);
             }
-
             return result.ToString();
         }
-        public static string ConvertProperties(object model)
+        private void ConvertProperties(object model, StringBuilder stringBuilder)
         {
             Type modelType = model.GetType();
             var properties = modelType.GetProperties();
-            StringBuilder result = new StringBuilder("{");
-
+            stringBuilder.Append("{");
             foreach (var property in properties)
             {
                 if (!property.IsDefined(typeof(MyIgnoreAttribute), false))
                 {
-                    result.Append($"\"{property.Name}\": \"{property.GetValue(model)}\",");
+                    stringBuilder.Append($"\"{property.Name}\": \"{property.GetValue(model)}\",");
                 }
             }
-            result.Append("}");
-
-            return result.ToString();
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            stringBuilder.Append("},");
         }
     }
 }
